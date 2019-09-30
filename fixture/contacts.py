@@ -12,9 +12,7 @@ class ContactsHelper:
         # init creation
         self.open_add_contact_page()
         # fill forms
-        wd.find_element_by_name("firstname").send_keys(contact.firstName)
-        wd.find_element_by_name("lastname").send_keys(contact.lastName)
-        wd.find_element_by_name("home").send_keys(contact.homePhone)
+        self.fill_contact_form(contact)
         # submit creation
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
@@ -26,12 +24,8 @@ class ContactsHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
 
-    def update_first_contact(self, contact):
+    def fill_contact_form(self, contact):
         wd = self.app.wd
-        # init creation
-        self.open_contact_page()
-        wd.find_element_by_css_selector("img[alt=\"Edit\"]").click()
-        # fill forms
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstName)
@@ -41,6 +35,14 @@ class ContactsHelper:
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
         wd.find_element_by_name("home").send_keys(contact.homePhone)
+
+    def update_first_contact(self, contact):
+        wd = self.app.wd
+        # init creation
+        self.open_contact_page()
+        wd.find_element_by_css_selector("img[alt=\"Edit\"]").click()
+        # fill forms
+        self.fill_contact_form(contact)
         # submit
         wd.find_element_by_name("update").click()
         self.return_to_contacts_page()
