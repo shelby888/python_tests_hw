@@ -26,15 +26,16 @@ class ContactsHelper:
 
     def fill_contact_form(self, contact):
         wd = self.app.wd
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contact.firstName)
-        wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(contact.lastName)
-        wd.find_element_by_name("home").click()
-        wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(contact.homePhone)
+        self.change_field_value("firstname", contact.firstName)
+        self.change_field_value("lastname", contact.lastName)
+        self.change_field_value("home", contact.homePhone)
+
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
 
     def update_first_contact(self, contact):
         wd = self.app.wd
@@ -49,6 +50,7 @@ class ContactsHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.open_contact_page()
         # select first
         wd.find_element_by_name("selected[]").click()
         # submit deletion
