@@ -23,7 +23,7 @@ class ContactsHelper:
 
     def open_contact_page(self):
         wd = self.app.wd
-        if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("searchstring")) > 0):
+        if not (wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("searchstring")) > 0):
             wd.find_element_by_link_text("home").click()
 
     def fill_contact_form(self, contact):
