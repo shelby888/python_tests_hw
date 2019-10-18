@@ -120,6 +120,8 @@ class ContactsHelper:
         lastName = wd.find_element_by_name("lastname").get_attribute("value")
         middleName = wd.find_element_by_name("middlename").get_attribute("value")
         nickName = wd.find_element_by_name("nickname").get_attribute("value")
+        # get address
+        address = wd.find_element_by_name("address").text
         # Get Telephone
         homePhone = wd.find_element_by_name("home").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
@@ -129,7 +131,7 @@ class ContactsHelper:
         email = wd.find_element_by_name("email").get_attribute("value")
         email2 = wd.find_element_by_name("email2").get_attribute("value")
         email3 = wd.find_element_by_name("email3").get_attribute("value")
-        return Contact(id=id, firstName=firstName, lastName=lastName, middleName=middleName, nickName=nickName,
+        return Contact(id=id, firstName=firstName, lastName=lastName, middleName=middleName, nickName=nickName, address=address,
                        homePhone=homePhone, mobilePhone=mobilephone, workPhone=workphone, secondaryPhone=secondaryphone,
                        email=email, email2=email2, email3=email3)
 

@@ -17,6 +17,15 @@ def test_emails_on_contact_view_page(app):
     contact_from_edit_page = app.contacts.get_contact_info_from_edit_page(index)
     assert contact_from_view_page.find(merge_emails_like_hp(contact_from_edit_page)) != -1
 
+def test_address_on_home_page(app):
+    app.contacts.is_contact_empty_create_contact()
+    contacts_list = app.contacts.get_contact_list()
+    index = randrange(len(contacts_list))
+    contact_from_home_page = contacts_list[index]
+    contact_from_edit_page = app.contacts.get_contact_info_from_edit_page(index)
+    assert contact_from_home_page.address == contact_from_edit_page.address
+
+
 
 def merge_emails_like_hp(contact):
     return "\n".join(filter(lambda x: x != "",
