@@ -8,10 +8,10 @@ def test_contact_data_on_home_page(app):
     index = randrange(len(contacts_list))
     contact_from_home_page = contacts_list[index]
     contact_from_edit_page = app.contacts.get_contact_info_from_edit_page(index)
-    assert contact_from_home_page.all_emails_from_hp == merge_emails_like_hp(contact_from_edit_page)
-    assert contact_from_home_page.address == contact_from_edit_page.address
     assert contact_from_home_page.firstName == contact_from_edit_page.firstName
     assert contact_from_home_page.lastName == contact_from_edit_page.lastName
+    assert contact_from_home_page.all_emails_from_hp == merge_emails_like_hp(contact_from_edit_page)
+    assert contact_from_home_page.address == contact_from_edit_page.address
     assert contact_from_home_page.all_phones_from_hp == merge_phones_like_hp(contact_from_edit_page)
 
 
